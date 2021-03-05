@@ -8,8 +8,9 @@ public class BinarySearch {
     public static Integer search(int[] mass, int toSearch) {
         int leftBoarder = 0;
         int rightBorder = mass.length;
-        while (true) {
-            int poolSize = (rightBorder - leftBoarder);
+        int poolSize = mass.length;
+        do {
+            poolSize = (rightBorder - leftBoarder);
 
             int searchPosition = leftBoarder + (poolSize / 2);
 
@@ -23,10 +24,8 @@ public class BinarySearch {
             if (mass[searchPosition] > toSearch) {
                 rightBorder = searchPosition;
             }
+        } while (poolSize > 1);
 
-            if (poolSize < 2) {
-                return null;
-            }
-        }
+        return null;
     }
 }

@@ -45,7 +45,7 @@ public class DijkstrasАlgorithm {
     }
 
     private static Integer calculatePathLength(Map<Vertex, Edge> bestParents, Vertex from, Vertex to) {
-        Integer length = 0;
+        Integer length = null;
         while (!to.equals(from) && bestParents.size() > 0) {
             Edge edge = bestParents.get(to);
             if (edge == null) {
@@ -64,12 +64,7 @@ public class DijkstrasАlgorithm {
         if (availableEdges.size() == 0)
             return null;
 
-        Edge min = availableEdges.stream().min(new Comparator<Edge>() {
-            @Override
-            public int compare(Edge o1, Edge o2) {
-                return Integer.compare(o1.getWeight(), o2.getWeight());
-            }
-        }).get();
+        Edge min = availableEdges.stream().min((o1, o2) -> Integer.compare(o1.getWeight(), o2.getWeight())).get();
 
         availableEdges.remove(min);
 
